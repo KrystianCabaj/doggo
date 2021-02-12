@@ -1,0 +1,25 @@
+{
+  "name": "doggo",
+  "version": "1.0.0",
+  "description": "Website with beautiful doggos.",
+  "main": "src/index.js",
+  "scripts": {
+    "generate:ssl": "npx devcert-cli generate localhost && mv localhost.cert snowpack.crt && mv localhost.key snowpack.key",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "keywords": [
+    "doggo",
+    "many",
+    "doggo"
+  ],
+  "author": "Krystian Cabaj & Adam Gulmantowicz",
+  "license": "ISC",
+  "devDependencies": {
+    "snowpack": "^3.0.11"
+  },
+  "dependencies": {
+    "@snowpack/plugin-sass": "^1.3.0"
+  }
+}
