@@ -12,6 +12,84 @@
     <title>Doggo project! See beautiful doggos!</title>
   </head>
   <body>
+    <template id="home-main">
+      <!-- Slider main container -->
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <figure>
+              <img src="url-do-doggo" alt="dogo sexy pic" />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure>
+              <img src="url-do-doggo" alt="dogo sexy pic" />
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure>
+              <img src="url-do-doggo" alt="dogo sexy pic" />
+            </figure>
+          </div>
+          ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </template>
+
+    <template id="breed-main">
+      <ul>
+        <li>
+          <figure>
+            <img src="url-do-doggo" alt="dogo sexy pic" />
+          </figure>
+        </li>
+        <li>
+          <figure>
+            <img src="url-do-doggo" alt="dogo sexy pic" />
+          </figure>
+        </li>
+      </ul>
+    </template>
+
+    <template id="home-sidebar">
+      <li><a href="/#/breed/:id">Owczarek niemiecki</a></li>
+      <li><a href="/#/breed/:id">Maltańczyk</a></li>
+      <li><a href="/#/breed/:id">York</a></li>
+      <li><a href="/#/breed/:id">Spaniel</a></li>
+    </template>
+
+    <template id="breed-sidebar">
+      <ul>
+        <li>
+          <a href="/#/breed/:id">Owczarek niemiecki</a>
+          <ul>
+            <li><a href="/#/breed/:id">Owczarek niemiecki</a></li>
+            <li><a href="/#/breed/:id">Maltańczyk</a></li>
+            <li><a href="/#/breed/:id">York</a></li>
+          </ul>
+        </li>
+        <li><a href="/#/breed/:id">Maltańczyk</a></li>
+        <li><a href="/#/breed/:id">York</a></li>
+        <li><a href="/#/breed/:id">Spaniel</a></li>
+      </ul>
+    </template>
+
+    <section>
+      <aside id="sidebar"></aside>
+      <main id="content"></main>
+    </section>
+
     <script type="module" src="src/index.js"></script>
   </body>
 </html>
