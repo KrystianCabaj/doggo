@@ -1,15 +1,14 @@
 import './scss/main.scss'
+import HomeRoute from './routes/home'
 
 console.log('hello world!');
 
 const store = {}
 
 const Router = {
-    '/': function () {
+    '/': HomeRoute,
+    '/breed/:id': async function () {
 
-    },
-    '/breeds': async function () {
-        const response = await axios()
     }
 }
 
