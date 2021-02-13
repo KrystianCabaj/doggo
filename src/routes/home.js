@@ -24,7 +24,7 @@ export async function HomePageSidebar () {
     console.log(error);
 	}
 	
-	return false;
+	return true;
 }
 
 export async function HomePageContent () {
@@ -43,5 +43,5 @@ export async function HomePageContent () {
 		console.log(error);
 	}
 
-	return true;
+	return false;
 }
