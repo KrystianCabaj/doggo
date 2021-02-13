@@ -22,10 +22,17 @@ export function renderBreedItemElements(
   return markup;
 }
 
-export default function BreedItems(breedItems) {
-  return /* html */ `<ul>
+export default function BreedItems(breedItems, containerToAppend) {
+  const markup = /* html */ `<ul>
     ${Object.keys(breedItems)
       .map((key) => renderBreedItemElements(key, breedItems[key]))
       .join("")}
   </ul>`;
+
+  if (containerToAppend) {
+    containerToAppend.insertAdjacentHTML('afterbegin', markup);
+    return;
+  }
+
+  return markup;
 }
