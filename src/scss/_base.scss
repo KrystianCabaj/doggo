@@ -26,3 +26,15 @@ body {
   );
   padding: 5rem 0;
 }
+
+@include media-query($breakpoint-tab) {
+  html {
+    font-size: 68.75%;
+  }
+}
+
+@include media-query($breakpoint-desktop) {
+  html {
+    font-size: 75%;
+  }
+}
