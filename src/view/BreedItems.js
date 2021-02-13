@@ -8,13 +8,8 @@ export function renderBreedItemElements(
   const markup = /* html */ `
           <li ${
             subBreeds.length > 0 ? "data-dropdown" : ""
-<<<<<<< HEAD
-          }><a href="/#/breed/${breed}${
-    subBreed ? `/subbreed/${subBreed}` : ""
-=======
           }><a href="/#/breed?breed=${breed}${
     subBreed ? `&subbreed=${subBreed}` : ""
->>>>>>> breed-route
   }">${subBreed ? subBreed : breed}</a>
               ${
                 subBreeds.length > 0
