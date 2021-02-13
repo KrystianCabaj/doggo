@@ -1,17 +1,22 @@
-import './scss/main.scss'
-import HomeRoute from './routes/home'
+import "./scss/main.scss";
+import HomeRoute from "./routes/home";
 
-console.log('hello world!');
-
-const store = {}
+const store = {};
 
 const Router = {
-    '/': HomeRoute,
-    '/breed/:id': async function () {
+  "": HomeRoute,
+  "breed/:id": async function () {},
+};
 
-    }
-}
+["load", "hashchange"].forEach((event) => {
+  window.addEventListener(event, function () {
+		let hash = window.location.hash.replace('#', '');
+		if (hash.startsWith('/')) hash = hash.slice(1, -1);
+		if (hash.endsWith('/')) hash = hash.slice(hash.length -1);
 
-window.addEventListener('hashchange', function (e) {
-    Router[window.location.hash]();
-})
+		const handlerRouteFunction = Router[hash];
+		if (typeof handlerRouteFunction === 'function') handlerRouteFunction();
+  });
+});
+
+// document.addEventListener()
