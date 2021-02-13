@@ -1,5 +1,6 @@
-@import "components";
-@import "layout";
-@import "mixins";
-@import "typography";
-@import "variables";
+@import "./variables";
+@import "./mixins";
+@import "./base";
+@import "./typography";
+@import "./layout";
+@import "./components";
