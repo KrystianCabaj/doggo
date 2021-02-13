@@ -28,18 +28,19 @@
     padding: 2rem 0;
     overflow-y: scroll;
     li {
-      padding: 1rem 0.5rem;
       a {
+        display: block;
         text-transform: capitalize;
         width: 100%;
         text-decoration: none;
         color: $color-primary-text;
         font-size: 1.6rem;
         padding: 1.2rem;
-      }
-      &:hover {
-        transition: all, 0.3s;
-        background-color: $color-grey-2;
+
+        &:hover {
+          transition: all, 0.3s;
+          background-color: $color-grey-2;
+        }
       }
     }
   }

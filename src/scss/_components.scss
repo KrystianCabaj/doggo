@@ -1,9 +1,9 @@
-@import './loader';
+@import "./loader";
 
 .polaroid-list {
   &__fig {
     box-shadow: $box-sha-1;
-    padding: 3rem 3rem 0 3rem;
+    padding: 1.5rem 1.5rem 5rem 1.5rem;
     border-radius: 0.5rem;
     overflow: hidden;
     transition: transform 0.3s;
