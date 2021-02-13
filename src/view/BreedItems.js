@@ -1,15 +1,17 @@
+import dropdown from "../utils/dropdown";
+
 export function renderBreedItemElements(
   breed,
   subBreeds = null,
   subBreed = false
 ) {
   const markup = /* html */ `
-          <li><a href="/#/breed/${breed}${
+          <li data-dropdown><a href="/#/breed/${breed}${
     subBreed ? `/subbreed/${subBreed}` : ""
   }">${subBreed ? subBreed : breed}</a>
               ${
                 subBreeds.length > 0
-                  ? "<ul>" +
+                  ? "<ul data-list>" +
                     subBreeds
                       .map((sub) => renderBreedItemElements(breed, false, sub))
                       .join("") +
@@ -22,7 +24,7 @@ export function renderBreedItemElements(
   return markup;
 }
 
-export default function BreedItems(breedItems, containerToAppend) {
+export default function BreedItems(breedItems, containerToAppend = false) {
   const markup = /* html */ `<ul>
     ${Object.keys(breedItems)
       .map((key) => renderBreedItemElements(key, breedItems[key]))
@@ -31,6 +33,7 @@ export default function BreedItems(breedItems, containerToAppend) {
 
   if (containerToAppend) {
     containerToAppend.insertAdjacentHTML('afterbegin', markup);
+    dropdown(containerToAppend);
     return;
   }
 
