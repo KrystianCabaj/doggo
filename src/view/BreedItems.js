@@ -6,8 +6,10 @@ export function renderBreedItemElements(
   subBreed = false
 ) {
   const markup = /* html */ `
-          <li ${subBreed ? "data-dropdown" : ""}><a href="/#/breed/${breed}${
-    subBreed ? `/subbreed/${subBreed}` : ""
+          <li ${
+            subBreeds.length > 0 ? "data-dropdown" : ""
+          }><a href="/#/breed?breed=${breed}${
+    subBreed ? `&subbreed=${subBreed}` : ""
   }">${subBreed ? subBreed : breed}</a>
               ${
                 subBreeds.length > 0

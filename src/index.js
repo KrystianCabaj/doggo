@@ -1,12 +1,14 @@
 import "./scss/main.scss";
 import { HomePageSidebar, HomePageContent } from "./routes/home";
+import BreedPageContent from "./routes/breeds";
 import Swiper from "swiper";
+import isAsync from "./utils/isAsync";
 
 const store = {};
 
 const Router = {
   "": [HomePageSidebar, HomePageContent],
-  "breed/:id": [HomePageSidebar],
+  "breed": [HomePageSidebar, BreedPageContent],
 };
 
 const secondCallPrevent = [];
@@ -14,13 +16,28 @@ const secondCallPrevent = [];
 ["load", "hashchange"].forEach((event) => {
   window.addEventListener(event, function () {
     let hash = window.location.hash.replace("#", "");
-    if (hash.startsWith("/")) hash = hash.slice(1, -1);
+    if (hash.startsWith("/")) hash = hash.slice(1);
     if (hash.endsWith("/")) hash = hash.slice(hash.length - 1);
+
+    let hashParams = {};
+
+    if (hash.includes("?")) {
+      hashParams = hash
+        .split("?")[1]
+        .split("&")
+        .reduce(function (res, item) {
+          var parts = item.split("=");
+          res[parts[0]] = parts[1];
+          return res;
+        }, {});
+    }
+
+    hash = hash.split("?")[0];
 
     const routeHandlersArray = [];
 
     Object.keys(Router).forEach((route) => {
-      if (hash.includes(route)) {
+      if (hash === route) {
         if (!typeof Router[route] === "array") return;
         Router[route].forEach((newHandler) => {
           if (
@@ -34,7 +51,9 @@ const secondCallPrevent = [];
       }
     });
 
-    routeHandlersArray.forEach((handler) => {
+    console.log(secondCallPrevent);
+
+    routeHandlersArray.forEach(async (handler) => {
       if (typeof handler === "function") {
         if (
           secondCallPrevent.findIndex(
@@ -42,7 +61,14 @@ const secondCallPrevent = [];
           ) >= 0
         )
           return;
-        if (handler()) secondCallPrevent.push(handler);
+        if (isAsync(handler)) {
+          console.log("is async");
+          const res = await handler(hashParams);
+          if (res) secondCallPrevent.push(handler);
+          return;
+        } else {
+          if (handler(hashParams)) secondCallPrevent.push(handler);
+        }
       }
     });
   });
