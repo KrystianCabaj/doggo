@@ -11,7 +11,7 @@ export function renderBreedItemElements(
                 subBreeds.length > 0
                   ? "<ul>" +
                     subBreeds
-                      .map((sub) =>renderBreedItemElements(breed, false, sub))
+                      .map((sub) => renderBreedItemElements(breed, false, sub))
                       .join("") +
                     "</ul>"
                   : ""
@@ -23,7 +23,9 @@ export function renderBreedItemElements(
 }
 
 export default function BreedItems(breedItems) {
-  return Object.keys(breedItems)
-    .map((key) => renderBreedItemElements(key, breedItems[key]))
-    .join("");
+  return /* html */ `<ul>
+    ${Object.keys(breedItems)
+      .map((key) => renderBreedItemElements(key, breedItems[key]))
+      .join("")}
+  </ul>`;
 }
