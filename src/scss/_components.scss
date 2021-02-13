@@ -1,8 +1,19 @@
 @import "./loader";
 
 .polaroid-list {
+  padding: 3rem 0;
+  &__element {
+    display: flex;
+    justify-content: center;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
   &__fig {
-    box-shadow: $box-sha-1;
+    max-width: 300px;
+
+    box-shadow: $box-sha-3;
     padding: 1.5rem 1.5rem 5rem 1.5rem;
     border-radius: 0.5rem;
     overflow: hidden;
