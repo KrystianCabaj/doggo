@@ -1,22 +1,50 @@
 import "./scss/main.scss";
-import HomeRoute from "./routes/home";
+import { HomePageSidebar, HomePageContent } from "./routes/home";
 import Swiper from "swiper";
 
 const store = {};
 
 const Router = {
-  "": HomeRoute,
-  "breed/:id": async function () {},
+  "": [HomePageSidebar, HomePageContent],
+  "breed/:id": [HomePageSidebar],
 };
+
+const secondCallPrevent = [];
 
 ["load", "hashchange"].forEach((event) => {
   window.addEventListener(event, function () {
-		let hash = window.location.hash.replace('#', '');
-		if (hash.startsWith('/')) hash = hash.slice(1, -1);
-		if (hash.endsWith('/')) hash = hash.slice(hash.length -1);
+    let hash = window.location.hash.replace("#", "");
+    if (hash.startsWith("/")) hash = hash.slice(1, -1);
+    if (hash.endsWith("/")) hash = hash.slice(hash.length - 1);
 
-		const handlerRouteFunction = Router[hash];
-		if (typeof handlerRouteFunction === 'function') handlerRouteFunction();
+    const routeHandlersArray = [];
+
+    Object.keys(Router).forEach((route) => {
+      if (hash.includes(route)) {
+        if (!typeof Router[route] === "array") return;
+        Router[route].forEach((newHandler) => {
+          if (
+            routeHandlersArray.findIndex(
+              (handler) => handler.toString() === newHandler.toString()
+            ) < 0
+          ) {
+            routeHandlersArray.push(newHandler);
+          }
+        });
+      }
+    });
+
+    routeHandlersArray.forEach((handler) => {
+      if (typeof handler === "function") {
+        if (
+          secondCallPrevent.findIndex(
+            (preventFunc) => preventFunc.toString() === handler.toString()
+          ) >= 0
+        )
+          return;
+        if (handler()) secondCallPrevent.push(handler);
+      }
+    });
   });
 });
 

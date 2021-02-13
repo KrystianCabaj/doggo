@@ -6,12 +6,12 @@ export function renderBreedItemElements(
   subBreed = false
 ) {
   const markup = /* html */ `
-          <li data-dropdown><a href="/#/breed/${breed}${
+          <li ${subBreed ? "data-dropdown" : ""}><a href="/#/breed/${breed}${
     subBreed ? `/subbreed/${subBreed}` : ""
   }">${subBreed ? subBreed : breed}</a>
               ${
                 subBreeds.length > 0
-                  ? "<ul data-list>" +
+                  ? "<ul data-list style='display: none;'>" +
                     subBreeds
                       .map((sub) => renderBreedItemElements(breed, false, sub))
                       .join("") +
