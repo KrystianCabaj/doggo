@@ -36,6 +36,9 @@ export default function BreedItems(breedItems, containerToAppend = false) {
   if (containerToAppend) {
     containerToAppend.insertAdjacentHTML("afterbegin", markup);
     dropdown(containerToAppend);
+    containerToAppend.querySelectorAll('li:not([data-dropdown])').forEach(el => el.addEventListener('click', e => {
+      containerToAppend.classList.remove('open-js')
+    }))
     return;
   }
 

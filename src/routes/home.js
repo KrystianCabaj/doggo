@@ -37,7 +37,8 @@ export async function HomePageContent () {
 		const { data } = await axios(API_HOST + RANDOM_IMAGE + "/10");
 	
 		if (data.message) {
-			clearContentLoader(SwiperContainer(data.message));
+			clearContentLoader();
+			SwiperContainer(data.message, content)
 		}
 	} catch (error) {
 		console.log(error);

@@ -3,11 +3,13 @@ const markup = /* html */ `
 `;
 
 export default function (container) {
-	container.innerHtml = '';
-	container.insertAdjacentHTML('afterbegin', markup);
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
+  }
+  container.insertAdjacentHTML("afterbegin", markup);
 
-	return function (nextMarkup = null) {
-		container.querySelector('.loader').remove();
-		if (nextMarkup) container.insertAdjacentHTML('afterbegin', nextMarkup);
-	}
+  return function (nextMarkup = null) {
+    container.querySelector(".loader").remove();
+    if (nextMarkup) container.insertAdjacentHTML("afterbegin", nextMarkup);
+  };
 }

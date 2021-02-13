@@ -2,17 +2,23 @@
 
 .polaroid-list {
   padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+
   &__element {
     display: flex;
     justify-content: center;
 
     &:not(:last-child) {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
   }
-  &__fig {
-    max-width: 300px;
 
+  &__fig {
+    width: 300px;
+    height: auto;
     box-shadow: $box-sha-3;
     padding: 1.5rem 1.5rem 5rem 1.5rem;
     border-radius: 0.5rem;
@@ -26,6 +32,28 @@
     img {
       height: auto;
       width: 100%;
+    }
+  }
+}
+
+.swiper-container {
+  height: 100%;
+}
+
+.swiper-wrapper {
+  height: auto;
+  align-items: center;
+}
+
+@include media-query($breakpoint-tab) {
+  .polaroid-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5rem 3rem;
+
+    &__element {
+      max-width: 320px;
     }
   }
 }

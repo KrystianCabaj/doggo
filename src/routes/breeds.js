@@ -10,18 +10,21 @@ export default async function BreedPageContent(params = {}) {
   const { breed, subbreed } = params;
   let breedUrl = API_HOST;
 
-  console.log(params);
+  console.log('breeds')
 
   if (breed && subbreed) breedUrl += SUBBREED(breed, subbreed);
   else if (breed) breedUrl += BY_BREED(breed);
-  else return;
+
   const clearContentLoader = loader(content);
 
   try {
     const { data } = await axios(breedUrl);
 
     if (data.message) {
-      clearContentLoader(Polaroids(data.message));
+      clearContentLoader();
+      console.log(content.childElementCount)
+      Polaroids(data.message, content);
+      console.log(content.childElementCount)
     }
   } catch (error) {
     console.log(error);
