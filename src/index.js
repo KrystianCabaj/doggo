@@ -1,22 +1,76 @@
 import "./scss/main.scss";
-import HomeRoute from "./routes/home";
+import { HomePageSidebar, HomePageContent } from "./routes/home";
+import BreedPageContent from "./routes/breeds";
 import Swiper from "swiper";
+import isAsync from "./utils/isAsync";
 
 const store = {};
 
 const Router = {
-  "": HomeRoute,
-  "breed/:id": async function () {},
+  "": [HomePageSidebar, HomePageContent],
+  "breed": [HomePageSidebar, BreedPageContent],
 };
+
+const secondCallPrevent = [];
 
 ["load", "hashchange"].forEach((event) => {
   window.addEventListener(event, function () {
-		let hash = window.location.hash.replace('#', '');
-		if (hash.startsWith('/')) hash = hash.slice(1, -1);
-		if (hash.endsWith('/')) hash = hash.slice(hash.length -1);
+    let hash = window.location.hash.replace("#", "");
+    if (hash.startsWith("/")) hash = hash.slice(1);
+    if (hash.endsWith("/")) hash = hash.slice(hash.length - 1);
 
-		const handlerRouteFunction = Router[hash];
-		if (typeof handlerRouteFunction === 'function') handlerRouteFunction();
+    let hashParams = {};
+
+    if (hash.includes("?")) {
+      hashParams = hash
+        .split("?")[1]
+        .split("&")
+        .reduce(function (res, item) {
+          var parts = item.split("=");
+          res[parts[0]] = parts[1];
+          return res;
+        }, {});
+    }
+
+    hash = hash.split("?")[0];
+
+    const routeHandlersArray = [];
+
+    Object.keys(Router).forEach((route) => {
+      if (hash === route) {
+        if (!typeof Router[route] === "array") return;
+        Router[route].forEach((newHandler) => {
+          if (
+            routeHandlersArray.findIndex(
+              (handler) => handler.toString() === newHandler.toString()
+            ) < 0
+          ) {
+            routeHandlersArray.push(newHandler);
+          }
+        });
+      }
+    });
+
+    console.log(secondCallPrevent);
+
+    routeHandlersArray.forEach(async (handler) => {
+      if (typeof handler === "function") {
+        if (
+          secondCallPrevent.findIndex(
+            (preventFunc) => preventFunc.toString() === handler.toString()
+          ) >= 0
+        )
+          return;
+        if (isAsync(handler)) {
+          console.log("is async");
+          const res = await handler(hashParams);
+          if (res) secondCallPrevent.push(handler);
+          return;
+        } else {
+          if (handler(hashParams)) secondCallPrevent.push(handler);
+        }
+      }
+    });
   });
 });
 
