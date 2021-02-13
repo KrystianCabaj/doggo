@@ -1,8 +1,7 @@
-import "./scss/main.scss";
 import { HomePageSidebar, HomePageContent } from "./routes/home";
 import BreedPageContent from "./routes/breeds";
-import Swiper from "swiper";
 import isAsync from "./utils/isAsync";
+import "./scss/main.scss";
 
 const store = {};
 
@@ -51,8 +50,6 @@ const secondCallPrevent = [];
       }
     });
 
-    console.log(secondCallPrevent);
-
     routeHandlersArray.forEach(async (handler) => {
       if (typeof handler === "function") {
         if (
@@ -72,11 +69,6 @@ const secondCallPrevent = [];
       }
     });
   });
-});
-
-new Swiper(".swiper-container", {
-  spaceBetween: 40,
-  slidesPerView: "auto",
 });
 
 document.addEventListener("touchstart", handleTouchStart, false);
