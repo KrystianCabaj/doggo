@@ -21,7 +21,8 @@ export default async function () {
     const { data } = await axios(API_HOST + ALL_BREEDS);
 
     if (data.message) {
-      clearSidebarLoader(BreedItems(data.message));
+			clearSidebarLoader();
+			BreedItems(data.message, sidebar)
     }
   } catch (error) {
     console.log(error);
