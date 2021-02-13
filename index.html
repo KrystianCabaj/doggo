@@ -12,55 +12,7 @@
     <title>Doggo project! See beautiful doggos!</title>
   </head>
   <body>
-    <template id="home-main">
-      <!-- Slider main container -->
-      <div class="swiper-container">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide">
-            <figure>
-              <img src="url-do-doggo" alt="dogo sexy pic" />
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure>
-              <img src="url-do-doggo" alt="dogo sexy pic" />
-            </figure>
-          </div>
-          <div class="swiper-slide">
-            <figure>
-              <img src="url-do-doggo" alt="dogo sexy pic" />
-            </figure>
-          </div>
-          ...
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
-      </div>
-    </template>
-
-    <template id="breed-main">
-      <ul>
-        <li>
-          <figure>
-            <img src="url-do-doggo" alt="dogo sexy pic" />
-          </figure>
-        </li>
-        <li>
-          <figure>
-            <img src="url-do-doggo" alt="dogo sexy pic" />
-          </figure>
-        </li>
-      </ul>
-    </template>
+    <template id="breed-main"> </template>
 
     <template id="home-sidebar">
       <li><a href="/#/breed/:id">Owczarek niemiecki</a></li>
@@ -85,9 +37,61 @@
       </ul>
     </template>
 
-    <section>
-      <aside id="sidebar"></aside>
-      <main id="content"></main>
+    <section class="section-wrapper">
+      <aside class="side-bar" id="sidebar">
+        <ul class="side-bar__list">
+          <li><a href="/#/breed/:id">Owczarek niemiecki</a></li>
+          <li><a href="/#/breed/:id">Maltańczyk</a></li>
+          <li><a href="/#/breed/:id">York</a></li>
+          <li><a href="/#/breed/:id">Spaniel</a></li>
+        </ul>
+      </aside>
+      <main id="content">
+        <!-- Slider main container -->
+        <div class="swiper-container">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <figure>
+                <img src="./images/person-1.webp" alt="dogo sexy pic" />
+              </figure>
+            </div>
+            <div class="swiper-slide">
+              <figure>
+                <img src="./images/person-2.webp" alt="dogo sexy pic" />
+              </figure>
+            </div>
+            <div class="swiper-slide">
+              <figure>
+                <img src="./images/person-3.webp" alt="dogo sexy pic" />
+              </figure>
+            </div>
+          </div>
+          <!-- If we need pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+          <!-- If we need scrollbar -->
+          <div class="swiper-scrollbar"></div>
+        </div>
+
+        <ul class="polaroid-list">
+          <li class="polaroid-list__element">
+            <figure class="polaroid-list__fig">
+              <img src="./images/person-5.webp" alt="dogo sexy pic" />
+            </figure>
+          </li>
+          <li class="polaroid-list__element">
+            <figure class="polaroid-list__fig">
+              <img src="./images/person-5.webp" alt="dogo sexy pic" />
+            </figure>
+          </li>
+        </ul>
+      </main>
     </section>
 
     <script type="module" src="src/index.js"></script>
